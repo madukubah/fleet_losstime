@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
 
-from . import qaqc_coa
+from . import fleet_vehicle_losstime

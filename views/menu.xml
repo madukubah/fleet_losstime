@@ -2,24 +2,17 @@
 <odoo>
 
 
-    <record model="ir.actions.act_window" id="action_coa">
-        <field name="name">COA</field>
-        <field name="res_model">qaqc.coa</field>
+    <record model="ir.actions.act_window" id="fleet_vehicle_losstime_action">
+        <field name="name">Vehicle Losstime</field>
+        <field name="res_model">fleet.vehicle.losstime</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-
     
-    <menuitem id="qaqc_top" name="QAQC" sequence="10" />
-
-    <menuitem id="qaqc_sub" name="QAQC" sequence="10" 
-			parent="qaqc_top"/>
-    
-    <menuitem name="COA"
-              id="qaqc_coa"
-              parent="qaqc_sub" 
-              action="action_coa"
-              sequence= "2"
+    <menuitem name="Vehicle Losstime"
+              id="fleet_vehicle_losstime"
+              parent="fleet.fleet_vehicles" 
+              action="fleet_vehicle_losstime_action"
+              sequence= "99"
               />
-
 </odoo>

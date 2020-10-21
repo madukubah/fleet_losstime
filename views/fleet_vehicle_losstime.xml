@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="fleet_vehicle_losstime_list" model="ir.ui.view">
+        <field name="name">fleet.vehicle.losstime.list</field>
+        <field name="model">fleet.vehicle.losstime</field>
+        <field name="type">tree</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <tree string="Vehicle Losstime List">
+                <field name="date" />
+                <field name="shift" />
+                <field name="vehicle_id" />
+                <field name="driver_id" />
+                <field name="losstime_type" />
+                <field name="hour" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_fleet_vehicle_losstime_form" model="ir.ui.view">
+            <field name="name">fleet.vehicle.losstime.form</field>
+            <field name="model">fleet.vehicle.losstime</field>
+            <field name="priority">1</field>
+            <field name="arch" type="xml">
+                <form string="Vehicle Losstime">
+                    <sheet>
+                        <group>
+                            <field name="name" invisible="1" />
+                            <field name="date" />
+                            <field name="shift" />
+                            <field name="vehicle_id" />
+                            <field name="driver_id" />
+                            <field name="losstime_type" />
+                            <field name="start_datetime" />
+                            <field name="end_datetime" />
+                            <field name="hour" />
+                            <field name="remarks" />
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+    </record>
+</odoo>
