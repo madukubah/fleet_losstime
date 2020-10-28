@@ -42,7 +42,8 @@ class FleetVehicleLosstime(models.Model):
     name = fields.Char(compute='_compute_name', store=True)
     date = fields.Date('Date', help='',  default=fields.Datetime.now )
     vehicle_id  = fields.Many2one('fleet.vehicle', 'Vehicle', required=True)
-    driver_id	= fields.Many2one('res.partner', string='Driver', required=True )
+    tag_ids = fields.Many2many('fleet.vehicle.tag', 'vehicle_losstime_vehicle_tag_rel', 'vehicle_losstime_tag_id', 'tag_id', 'Tags', store=True, compute="_compute_tag_ids")
+    driver_id	= fields.Many2one('res.partner', string='Driver' )
     shift = fields.Selection([
         ( "1" , '1'), 
         ( "2" , '2'), 
@@ -57,6 +58,13 @@ class FleetVehicleLosstime(models.Model):
     end_datetime = fields.Datetime('End Date Time', help='' )
     hour = fields.Float('Hours', readonly=True, compute="_compute_hour" )
     remarks = fields.Char( String="Remarks", store=True)
+
+    @api.depends( 'vehicle_id')
+    def _compute_tag_ids(self):
+        for record in self:
+            record.update({
+                    'tag_ids': [( 6, 0, record.vehicle_id.tag_ids.ids )],
+                })
 
     @api.depends( 'date')
     def _compute_name(self):
