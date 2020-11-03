@@ -12,6 +12,8 @@
         'views/menu.xml',
         "views/fleet_vehicle_losstime.xml",
         "views/fleet.xml",
+
+        "security/ir.model.access.csv",
     ],
     'qweb': [
         # 'static/src/xml/cashback_templates.xml',
