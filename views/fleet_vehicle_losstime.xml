@@ -35,6 +35,9 @@
                             <field name="losstime_type" />
                             <field name="start_datetime" />
                             <field name="end_datetime" />
+                            <field name="minutes" />
+                            <field name="start" />
+                            <field name="end" />
                             <field name="hour" />
                             <field name="remarks" />
                         </group>

@@ -56,7 +56,12 @@ class FleetVehicleLosstime(models.Model):
         ], string='Losstime type', index=True, required=True )
     start_datetime = fields.Datetime('Start Date Time', help='',  default=fields.Datetime.now )
     end_datetime = fields.Datetime('End Date Time', help='' )
-    hour = fields.Float('Hours', readonly=True, compute="_compute_hour" )
+    minutes = fields.Float('Minutes', readonly=True, compute="_compute_hour" )
+
+    start = fields.Float('Start Hourmeter')
+    end = fields.Float('End Hourmeter')
+    hour = fields.Float('Hourmeter Value', readonly=True, compute="_compute_hour" )
+
     remarks = fields.Char( String="Remarks", store=True)
 
     @api.depends( 'vehicle_id')
@@ -81,7 +86,7 @@ class FleetVehicleLosstime(models.Model):
         for record in self:
             record.driver_id = record.vehicle_id.driver_id
     
-    @api.depends('start_datetime', 'end_datetime')
+    @api.depends('start_datetime', 'end_datetime', 'start', 'end' )
     def _compute_hour(self):
         for record in self:
             #compute end date
@@ -89,5 +94,6 @@ class FleetVehicleLosstime(models.Model):
                 start = datetime.datetime.strptime(record.start_datetime, '%Y-%m-%d %H:%M:%S')
                 ends = datetime.datetime.strptime(record.end_datetime, '%Y-%m-%d %H:%M:%S')
                 diff = relativedelta(ends, start)
-                record.hour = diff.hours
+                record.minutes = diff.minutes + ( diff.hours * 60 )
 
+                record.hour = record.end + record.start
