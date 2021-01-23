@@ -57,6 +57,7 @@ class FleetVehicleLosstime(models.Model):
     start_datetime = fields.Datetime('Start Date Time', help='',  default=fields.Datetime.now )
     end_datetime = fields.Datetime('End Date Time', help='' )
     minutes = fields.Float('Minutes', readonly=True, compute="_compute_hour" )
+    hours = fields.Float('Hours', readonly=True, compute="_compute_hour" )
 
     start = fields.Float('Start Hourmeter')
     end = fields.Float('End Hourmeter')
@@ -95,5 +96,6 @@ class FleetVehicleLosstime(models.Model):
                 ends = datetime.datetime.strptime(record.end_datetime, '%Y-%m-%d %H:%M:%S')
                 diff = relativedelta(ends, start)
                 record.minutes = diff.minutes + ( diff.hours * 60 )
+                record.hours = diff.hours
 
-                record.hour = record.end + record.start
+                record.hour = record.end - record.start
