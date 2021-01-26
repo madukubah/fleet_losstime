@@ -72,6 +72,12 @@ class FleetVehicleLosstime(models.Model):
                     'tag_ids': [( 6, 0, record.vehicle_id.tag_ids.ids )],
                 })
 
+    @api.onchange( 'date' )
+    def _set_date(self):
+        for record in self:
+            record.start_datetime = record.date
+            record.end_datetime = record.date
+            
     @api.depends( 'date')
     def _compute_name(self):
         for record in self:
