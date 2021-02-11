@@ -38,6 +38,7 @@ class FleetVehicle(models.Model):
 class FleetVehicleLosstime(models.Model):
     _name = "fleet.vehicle.losstime"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _order = "date desc"
     
     name = fields.Char(compute='_compute_name', store=True)
     date = fields.Date('Date', help='',  default=fields.Datetime.now )
