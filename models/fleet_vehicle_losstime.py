@@ -79,7 +79,7 @@ class FleetVehicleLosstime(models.Model):
             record.start_datetime = record.date
             record.end_datetime = record.date
             
-    @api.depends( 'date')
+    @api.depends( 'vehicle_id', 'date')
     def _compute_name(self):
         for record in self:
             name = record.vehicle_id.name
