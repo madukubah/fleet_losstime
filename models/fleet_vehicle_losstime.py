@@ -54,6 +54,7 @@ class FleetVehicleLosstime(models.Model):
 		('slippery', 'Slippery'),
 		('rainy', 'Rainy'),
 		('no_operator', 'No Operator'),
+		('no_instruction', 'No Instruction'),
         ], string='Losstime type', index=True, required=True )
     start_datetime = fields.Datetime('Start Date Time', help='',  default=fields.Datetime.now )
     end_datetime = fields.Datetime('End Date Time', help='' )
