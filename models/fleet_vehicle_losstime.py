@@ -63,7 +63,7 @@ class FleetVehicleLosstime(models.Model):
 
     start = fields.Float('Start Hourmeter')
     end = fields.Float('End Hourmeter')
-    hour = fields.Float('Hourmeter Value', readonly=True, compute="_compute_hour" )
+    hour = fields.Float('Hourmeter Value', readonly=True, compute="_compute_hour", store=True )
 
     remarks = fields.Char( String="Remarks", store=True)
 
